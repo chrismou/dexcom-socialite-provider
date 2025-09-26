@@ -1,0 +1,45 @@
+{
+  "name": "chrismou/dexcom-socialite-provider",
+  "description": "Dexcom Authentication Provider for Laravel Socialite",
+  "license": "MIT",
+  "keywords": [
+    "laravel",
+    "oauth",
+    "provider",
+    "socialite",
+    "dexcom"
+  ],
+  "authors": [
+    {
+      "name": "Chris Chrisostomou",
+      "email": "dev@mou.me"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/socialiteproviders/providers/issues",
+    "source": "https://github.com/socialiteproviders/providers",
+    "docs": "https://socialiteproviders.com/dexcom"
+  },
+  "require": {
+    "php": "^8.0",
+    "socialiteproviders/manager": "^4.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "SocialiteProviders\\Dexcom\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "aliases": {
+        "Socialite": "Laravel\\Socialite\\Facades\\Socialite"
+      }
+    }
+  },
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/home/mou/dev/dexcom/socialite-dexcom"
+    }
+  ]
+}
