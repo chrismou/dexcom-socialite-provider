@@ -1,4 +1,4 @@
-# Dexcom
+# Dexcom provider for Laravel Socialite 
 
 ```bash
 composer require chrismou/dexcom-socialite-provider
@@ -53,7 +53,7 @@ protected $listen = [
 ```
 </details>
 
-### Usage
+### Usage example
 
 You should now be able to use the provider like you would regularly use Socialite (assuming you have the facade installed), ie:
 
@@ -63,6 +63,7 @@ Route::get('/auth/dexcom', function () {
 });
 ```
 
+Assuming you registered /auth/callback as your redirect URL, you can handle the callback like so:
 ```php
 Route::get('/auth/callback', function () {
     $dexcomUser = Socialite::driver('dexcom')->user();
@@ -78,11 +79,11 @@ Route::get('/auth/callback', function () {
     return redirect()->intended('/dashboard');
 });
 ```
+Now you should have a user logged in with their Dexcom account, and an access/refresh token available for API requests
 
 ```php
 Route::get('/dashboard', function () {
     $user = Auth::user();
-    $id = Auth::id();
 
     $client = new \GuzzleHttp\Client\Client();
     $request = $client->request('GET', Socialite::driver('dexcom')->getApiUrl() . '/v3/users/self/egvs', [
@@ -95,11 +96,10 @@ Route::get('/dashboard', function () {
             'Accept' => 'application/json',
         ]
     ]);
-
-    $response = json_decode($request->getBody()->getContents());
-
-    var_dump($response);
+    
+    var_dump(json_decode($request->getBody()->getContents());
     exit;
+    
 })->middleware('auth');
 ```
 
