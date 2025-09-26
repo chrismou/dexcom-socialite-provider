@@ -24,13 +24,10 @@ class Provider extends AbstractProvider
 
         if ($mode === 'us') {
             return self::US_API_URL;
-
         } elseif ($mode === 'eu') {
             return self::EU_API_URL;
-
         } elseif ($mode === 'jp') {
             return self::JP_API_URL;
-
         } else {
             return self::SANDBOX_API_URL;
         }
@@ -69,11 +66,11 @@ class Provider extends AbstractProvider
     {
         $request = $this->getHttpClient()->get($this->getApiUrl() . '/v3/users/self/devices', [
             RequestOptions::HEADERS => [
-                'Authorization' => 'Bearer '.$token,
+                'Authorization' => 'Bearer ' . $token,
             ],
         ]);
 
-        $response = json_decode((string) $request->getBody(), true);
+        $response = json_decode((string)$request->getBody(), true);
 
         return ['id' => $response['userId']];
     }
