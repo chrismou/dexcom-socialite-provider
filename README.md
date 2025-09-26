@@ -10,8 +10,7 @@ Please see the [Base Installation Guide](https://socialiteproviders.com/usage/),
 
 ### Add configuration to `config/services.php`
 
-Add the required values to your `.env` and then add the below configuration.  The `mode` can be one of `us`, `eu`, `jp` or `sandbox` (default is `sandbox`). You'll need to develop with
-`sandbox` intially, but when you switch to using production data you'll need to change this to the appropriate region - `us` if in America, `jp` for Japan or `eu` for the rest of the world.
+Register your app at https://developer.dexcom.com/account/apps, then add the relevant credentials to your `.env` file (see below).  Once this done, add the following to your `config/services` file.
 
 ```php
 'dexcom' => [    
@@ -21,6 +20,9 @@ Add the required values to your `.env` and then add the below configuration.  Th
   'mode' => env('DEXCOM_MODE', 'sandbox'), // 'us', 'eu', jp' or 'sandbox'
 ],
 ```
+
+The `mode` can be one of `us`, `eu`, `jp` or `sandbox` (default is `sandbox`). You'll need to develop with the sandbox initially, but when you switch to using production
+data you'll need to change this to the appropriate region - `us` if in America, `jp` for Japan or `eu` for the rest of the world.
 
 ### Add provider event listener
 
