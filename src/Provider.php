@@ -20,7 +20,7 @@ class Provider extends AbstractProvider
 
     public function getApiUrl(): string
     {
-        $mode = strtolower($this->getConfig('mode'));
+        $mode = strtolower($this->getConfig('mode', 'sandbox'));
 
         if ($mode === 'us') {
             return self::US_API_URL;
@@ -46,7 +46,7 @@ class Provider extends AbstractProvider
         return $this->getApiUrl() . '/v2/oauth2/token';
     }
 
-    public function user()
+    public function user(): User
     {
         if ($this->user) {
             return $this->user;

@@ -1,6 +1,6 @@
 {
   "name": "chrismou/dexcom-socialite-provider",
-  "description": "Dexcom Authentication Provider for Laravel Socialite",
+  "description": "A Laravel Socialite provider for authenticating using the Dexcom API",
   "license": "MIT",
   "keywords": [
     "laravel",
