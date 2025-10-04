@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SocialiteProviders\Dexcom;
 
 use GuzzleHttp\RequestOptions;
@@ -24,27 +26,19 @@ class Provider extends AbstractProvider
 
     public function getApiUrl(): string
     {
-        $mode = strtolower($this->getConfig('mode', 'sandbox'));
+        $mode = mb_strtolower($this->getConfig('mode', 'sandbox'));
 
         if ($mode === 'us') {
             return self::US_API_URL;
-        } elseif ($mode === 'eu') {
-            return self::EU_API_URL;
-        } elseif ($mode === 'jp') {
-            return self::JP_API_URL;
-        } else {
-            return self::SANDBOX_API_URL;
         }
-    }
+        if ($mode === 'eu') {
+            return self::EU_API_URL;
+        }
+        if ($mode === 'jp') {
+            return self::JP_API_URL;
+        }
+        return self::SANDBOX_API_URL;
 
-    protected function getAuthUrl($state): string
-    {
-        return $this->buildAuthUrlFromBase($this->getApiUrl() . '/v2/oauth2/login', $state);
-    }
-
-    protected function getTokenUrl(): string
-    {
-        return $this->getApiUrl() . '/v2/oauth2/token';
     }
 
     public function user(): User
@@ -61,6 +55,16 @@ class Provider extends AbstractProvider
         $user = $this->getUserByToken(Arr::get($response, 'access_token'));
 
         return $this->userInstance($response, $user);
+    }
+
+    protected function getAuthUrl($state): string
+    {
+        return $this->buildAuthUrlFromBase($this->getApiUrl() . '/v2/oauth2/login', $state);
+    }
+
+    protected function getTokenUrl(): string
+    {
+        return $this->getApiUrl() . '/v2/oauth2/token';
     }
 
     /**

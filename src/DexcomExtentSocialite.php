@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace SocialiteProviders\Dexcom;
 
 use SocialiteProviders\Manager\SocialiteWasCalled;
