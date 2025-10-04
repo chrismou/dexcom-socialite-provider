@@ -15,8 +15,12 @@ class Provider extends AbstractProvider
     public const EU_API_URL = 'https://api.dexcom.eu';
     public const JP_API_URL = 'https://api.dexcom.jp';
     public const SANDBOX_API_URL = 'https://sandbox-api.dexcom.com';
-
     protected $scopes = ['offline_access'];
+
+    public static function additionalConfigKeys(): array
+    {
+        return ['mode'];
+    }
 
     public function getApiUrl(): string
     {
